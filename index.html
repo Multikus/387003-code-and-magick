@@ -185,10 +185,10 @@
   var fireballSize = 22;
 
   var getFireballSpeed = function(left) {
-    if (left) {
-      return 5;
-    }  else {
+    if (left === true) {
       return 2;
+    }  else {
+      return 5;
     }
   };
 
@@ -197,16 +197,17 @@
 
   //функция которая возвращает пропорциональную высоту мага
   var getWizardHeight = function() {
-    return.wizardWidth * 1.337;
+    return wizardWidth * 1.337;
   };
 
 //Возвращает ширину игровой области
   function getWizardX(width) {
-    return.document.getElementById('demo').offsetWidth;
+    return document.querySelector('canvas').offsetWidth;
   };
 //Возвращает высоту игровой области
   function getWizardY(height) {
-    return.document.getElementById('demo').offsetHeight;
+    return document.querySelector('canvas').offsetHeight;
+
   };
 </script>
 
