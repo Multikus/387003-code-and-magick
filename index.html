@@ -204,18 +204,12 @@
   function getWizardX(width) {
     document.querySelector('canvas').offsetWidth;
 
-    //пытался сместить мага в центр
-
-    //var canvas = document.querySelector('canvas');
-    //var ctx = canvas.getContext('2d');
-    //ctx.translate(0, 0);
-
-    return (width);
+    return (width / 2);
   };
 //Возвращает высоту игровой области
   function getWizardY(height) {
     document.querySelector('canvas').offsetHeight;
-    return (height);
+    return (height / 3);
 
   };
 </script>
