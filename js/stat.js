@@ -2,6 +2,7 @@
 //Константы для отрисовки облака.
 var CLOUD_WIDTH = 300;
 var CLOUD_HEIGHT = 230;
+
 var CLOUD_X = 40;
 var CLOUD_Y = 200;
 var TEXT_X = 220;//верх низ
@@ -22,7 +23,7 @@ var renderCloud = function(ctx, x, y, color) {
 };
 
 
-window.renderStatistics = function(ctx, players, times) {
+window.renderStatistics = function(ctx) {
 
   //Отрисовка гистограммы результатов игроков
   renderCloud(ctx, CLOUD_Y + GAP, CLOUD_X + GAP, 'rgba(0, 0, 0, 0.3)');
@@ -35,6 +36,16 @@ window.renderStatistics = function(ctx, players, times) {
 
   var players = ['Вы', 'Иван', 'Юлия'];
 
+  for (var i = 0; i < players.length; i++) {
+    ctx.fillText(players[i], TEXT_Y + GAP + TEXT_GAP * i, TEXT_X + FONT_GAP, BAR_WIDTH, BAR_WIDTH);
+    ctx.fillRect(CLOUD_Y + (GAP + TEXT_WIDTH) * i, CLOUD_X + GAP, BAR_WIDTH, barHeight);
+      //CLOUD_Y + GAP * i + TEXT_WIDTH, CLOUD_X + GAP, BAR_WIDTH * i, barHeight);
+  }
+
+
+
+
+/*
   ctx.fillText('Вы', TEXT_Y + GAP, TEXT_X + GAP + FONT_GAP);  //
   ctx.fillRect(CLOUD_Y + GAP + TEXT_WIDTH, CLOUD_X + GAP, BAR_WIDTH, barHeight);
 
@@ -50,6 +61,6 @@ window.renderStatistics = function(ctx, players, times) {
   ctx.fillText('Юлия', TEXT_Y + (TEXT_GAP + GAP) * 2, TEXT_X + GAP + FONT_GAP);
   ctx.fillRect(CLOUD_Y + (GAP + TEXT_WIDTH) * 3, CLOUD_X + GAP, BAR_WIDTH, barHeight);
 
-
+*/
 
 };
