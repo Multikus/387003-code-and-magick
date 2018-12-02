@@ -19,7 +19,7 @@ var barHeight = maxHeightBar;// высота бара
 var BAR_WIDTH = 40;
 var PLAYER_NAME = 'Вы';
 var MY_COLOR = 'rgba(255, 0, 0, 1)';
-var ANY_PLAYER_COLOR = 'rgba(0,0,102,1)';
+
 
 // рисуем облако и тень
 
@@ -38,9 +38,24 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
+function getRandomNumber(min, max) {
+  var numberRand = Math.round(Math.random() * (max - min) + min);
+  return numberRand;
+}
+
+var getRandomColor = function () {
+  var rColor = getRandomNumber(1, 255);
+  var gColor = getRandomNumber(1, 255);
+  var bColor = getRandomNumber(1, 255);
+  var aColor = aColor = Math.random().toFixed(1);
+  return 'rgba(' + rColor + ',' + gColor + ',' + bColor + ',' + aColor + ')';
+};
+
+/*
 var getRandom = function () {
   return Math.random();
 };
+*/
 
 var getRenderMyBar = function (ctx, names, times) {
   var maxTime = getMaxElement(times);// вызываем функцию поиска макс. элемента из массива times
@@ -54,9 +69,9 @@ var getRenderMyBar = function (ctx, names, times) {
 var getRenderOtherBar = function (ctx, names, times) {
   var maxTime = getMaxElement(times);// вызываем функцию поиска макс. элемента из массива times
   for (var i = 0; i < names.length; i++) {
-    var alfaСhannel = getRandom();
-    ctx.fillStyle = ANY_PLAYER_COLOR;// попытка задать случайный канал
-    ctx.globalAlpha = alfaСhannel;
+    // var alfaСhannel = getRandom();
+    ctx.fillStyle = getRandomColor();// попытка задать случайный канал
+    // ctx.globalAlpha = alfaСhannel;
     ctx.fillRect(TEXT_X + GAP + TEXT_GAP * i, (CLOUD_Y + GAP) * INVERSION_BAR_DRAW, BAR_WIDTH, (-(maxHeightBar * times[i]) / maxTime), barHeight);
     ctx.fillText(names[i], TEXT_X + GAP + TEXT_GAP * i, TEXT_Y + FONT_GAP + GAP, BAR_WIDTH);
   }
