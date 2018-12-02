@@ -38,13 +38,12 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
-var maxTime = getMaxElement(times);// вызываем функцию поиска макс. элемента из массива times
-
 var getRandom = function () {
   return Math.random();
 };
 
 var getRenderMyBar = function (ctx, names, times) {
+  var maxTime = getMaxElement(times);// вызываем функцию поиска макс. элемента из массива times
   for (var i = 0; i < names.length; i++) {
     ctx.fillStyle = MY_COLOR;
     ctx.fillRect(TEXT_X + GAP + TEXT_GAP * i, (CLOUD_Y + GAP) * INVERSION_BAR_DRAW, BAR_WIDTH, (-(maxHeightBar * times[i]) / maxTime), barHeight);
@@ -53,6 +52,7 @@ var getRenderMyBar = function (ctx, names, times) {
 };
 
 var getRenderOtherBar = function (ctx, names, times) {
+  var maxTime = getMaxElement(times);// вызываем функцию поиска макс. элемента из массива times
   for (var i = 0; i < names.length; i++) {
     var alfaСhannel = getRandom();
     ctx.fillStyle = ANY_PLAYER_COLOR;// попытка задать случайный канал
