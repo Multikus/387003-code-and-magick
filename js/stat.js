@@ -60,18 +60,36 @@ var getRandom = function () {
 var getRenderMyBar = function (ctx, names, times) {
   var maxTime = getMaxElement(times);// вызываем функцию поиска макс. элемента из массива times
   for (var i = 0; i < names.length; i++) {
-    ctx.fillStyle = MY_COLOR;
-    ctx.fillRect(TEXT_X + GAP + TEXT_GAP * i, (CLOUD_Y + GAP) * INVERSION_BAR_DRAW, BAR_WIDTH, (-(maxHeightBar * times[i]) / maxTime), barHeight);
-    ctx.fillText(names[i], TEXT_X + GAP + TEXT_GAP * i, TEXT_Y + FONT_GAP + GAP, BAR_WIDTH);
+    if (names === 'Вы') {
+      ctx.fillStyle = MY_COLOR;
+      ctx.fillRect(TEXT_X + GAP + TEXT_GAP * i, (CLOUD_Y + GAP) * INVERSION_BAR_DRAW, BAR_WIDTH, (-(maxHeightBar * times[i]) / maxTime), barHeight);
+      ctx.fillText(names[i], TEXT_X + GAP + TEXT_GAP * i, TEXT_Y + FONT_GAP + GAP, BAR_WIDTH);
+    }
   }
 };
 
 var getRenderOtherBar = function (ctx, names, times) {
   var maxTime = getMaxElement(times);// вызываем функцию поиска макс. элемента из массива times
+
+  /*
+  var count = 0;
+  for (var i = 0; i < names.length; i += 1) {
+    if (i in names) {
+      count += 1;
+    }
+   }
+  for (var j = 0; j < names.length; j++) {
+    if (names[j] === 'Вы') {
+    names.splice([j], 1);
+    }
+  }
+ */
+
   for (var i = 0; i < names.length; i++) {
-    // var alfaСhannel = getRandom();
-    ctx.fillStyle = getRandomColor();// попытка задать случайный канал
-    // ctx.globalAlpha = alfaСhannel;
+    if (names[i] === 'Вы') { // должно найти элемент массива который равен текущему игроку
+      names.splice([i], 1); // Удалем этот элемент массива
+    }
+    ctx.fillStyle = getRandomColor();// Вызов функции для заливки. Задаём случайный цвет
     ctx.fillRect(TEXT_X + GAP + TEXT_GAP * i, (CLOUD_Y + GAP) * INVERSION_BAR_DRAW, BAR_WIDTH, (-(maxHeightBar * times[i]) / maxTime), barHeight);
     ctx.fillText(names[i], TEXT_X + GAP + TEXT_GAP * i, TEXT_Y + FONT_GAP + GAP, BAR_WIDTH);
   }
